@@ -72,7 +72,7 @@ void WorkspaceDelegate::initStyleOption(QStyleOptionViewItem *option, const QMod
 
         foreach (QString type, m_view->model()->allowedTypesFilter())
         {
-            if (path.contains(QRegExp(type, Qt::CaseInsensitive, QRegExp::Wildcard)))
+            if (path.contains(QRegularExpression(type)))
                 return;
         }
 
@@ -83,7 +83,7 @@ void WorkspaceDelegate::initStyleOption(QStyleOptionViewItem *option, const QMod
 
         if (disabled == enabled) {
             QColor t = option->palette.color(QPalette::Disabled, QPalette::Text);
-            QColor b = option->palette.color(QPalette::Disabled, QPalette::Background);
+            QColor b = option->palette.color(QPalette::Disabled, QPalette::Base);
 
             QColor selection = QColor::fromRgb((t.red() + b.red()) / 2, (t.green() + b.green()) / 2, (t.blue() + b.blue()) / 2);
 

@@ -42,7 +42,7 @@ LogView::LogView(bool createLogger, QWidget *parent)
     m_log->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse | Qt::TextSelectableByKeyboard);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0,0,0,0);
     layout->addWidget(m_log);
     setLayout(layout);
 

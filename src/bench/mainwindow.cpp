@@ -214,7 +214,7 @@ void MainWindow::setupHostView()
 {
     m_hostDock = new QDockWidget("Hosts", this);
     m_hostDock->setObjectName("hosts");
-    m_hostDock->setFeatures(QDockWidget::AllDockWidgetFeatures);
+    m_hostDock->setFeatures(QDockWidget::Reserved);
 
     QFrame *hostContainer = new QFrame();
     hostContainer->setFrameStyle(QFrame::StyledPanel);
@@ -237,7 +237,7 @@ void MainWindow::setupLogView()
     m_logDock->setObjectName("log");
     m_logDock->setWidget(m_log);
     m_logDock->setAllowedAreas(Qt::TopDockWidgetArea | Qt::BottomDockWidgetArea);
-    m_logDock->setFeatures(QDockWidget::AllDockWidgetFeatures);
+    m_logDock->setFeatures(QDockWidget::Reserved);
     addDockWidget(Qt::BottomDockWidgetArea, m_logDock);
 
     connect(m_node, &LiveNodeEngine::logIgnoreMessages, m_log, &LogView::setIgnoreMessages);

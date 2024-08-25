@@ -32,6 +32,7 @@
 
 #include "filesystemmodel.h"
 
+
 FileSystemModel::FileSystemModel(QObject *parent) :
     QFileSystemModel(parent) ,
     m_dirSelectable(true)
@@ -73,7 +74,7 @@ Qt::ItemFlags FileSystemModel::flags(const QModelIndex &index) const
     QString path = filePath(index);
 
     foreach (QString type, m_allowedTypes) {
-        if (path.contains(QRegExp(type, Qt::CaseInsensitive, QRegExp::Wildcard)))
+        if (path.contains(QRegularExpression(type)))
             return f;
     }
 

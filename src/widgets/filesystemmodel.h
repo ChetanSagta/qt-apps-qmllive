@@ -33,6 +33,7 @@
 #pragma once
 
 #include <QFileSystemModel>
+#include <QRegularExpression>
 
 class FileSystemModel : public QFileSystemModel
 {

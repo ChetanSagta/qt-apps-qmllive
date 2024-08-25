@@ -38,7 +38,7 @@
 #include <QDateTime>
 
 class ContentAdapterInterface;
-class PreviewImageProvider : public QObject, public QQuickImageProvider
+class PreviewImageProvider : public QQuickImageProvider
 {
     Q_OBJECT
 

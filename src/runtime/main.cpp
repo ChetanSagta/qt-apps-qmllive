@@ -36,8 +36,6 @@
 
 #include "livenodeengine.h"
 #include "remotereceiver.h"
-#include "logger.h"
-#include "qmlhelper.h"
 #include "qmllive_version.h"
 #include "constants.h"
 
@@ -137,7 +135,7 @@ static void parseArguments(const QStringList &arguments)
     options.fullscreen = parser.isSet(fullScreenOption);
     options.transparent = parser.isSet(transparentOption);
     options.frameless = parser.isSet(framelessOption);
-    options.windowTitle = parser.isSet(windowTitleOption);
+    // options.windowTitle = parser.isSet(windowTitleOption);
     options.hideButtons = parser.isSet(hideButtonsOption);
 
     QStringList positionalArguments = parser.positionalArguments();
@@ -168,7 +166,7 @@ private slots:
             QSurfaceFormat surfaceFormat;
             surfaceFormat.setAlphaBufferSize(8);
             activeWindow->setFormat(surfaceFormat);
-            activeWindow->setClearBeforeRendering(true);
+            // activeWindow->setClearBeforeRendering(true);
             activeWindow->setColor(QColor(Qt::transparent));
         }
 

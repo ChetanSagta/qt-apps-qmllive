@@ -465,7 +465,7 @@ void LiveNodeEngine::reloadDocument()
         emit logErrors(QList<QQmlError>() << error);
     };
 
-    QScopedPointer<QQmlComponent> component(new QQmlComponent(m_qmlEngine));
+    std::unique_ptr<QQmlComponent> component(new QQmlComponent(m_qmlEngine));
     if (url.path().endsWith(QLatin1String(".qml"), Qt::CaseInsensitive)) {
         component->loadUrl(url);
         m_object = component->create();
@@ -498,7 +498,7 @@ void LiveNodeEngine::reloadDocument()
             else
                 m_fallbackView->setResizeMode(QQuickView::SizeViewToRootObject);
             component->setParent(m_fallbackView);
-            m_fallbackView->setContent(url, component.take(), m_object);
+            m_fallbackView->setContent(url, component.get(), m_object);
             m_activeWindow = m_fallbackView;
         } else {
             logError(tr("Warning: LiveNodeEngine: Cannot display this component: "
@@ -637,8 +637,8 @@ void LiveNodeEngine::setWorkspace(const QString &path, WorkspaceOptions options)
     if (m_workspaceOptions & AllowUpdates) {
         // Even without UpdatesAsOverlay the overlay is used for Qt resources
         m_overlay = new Overlay(m_workspace.path(), this);
-        m_urlInterceptor = new UrlInterceptor(m_workspace, m_overlay, m_resourceMap, qmlEngine()->urlInterceptor(), this);
-        qmlEngine()->setUrlInterceptor(m_urlInterceptor);
+        m_urlInterceptor = new UrlInterceptor(m_workspace, m_overlay, m_resourceMap, qmlEngine()->urlInterceptors().at(0), this);
+        qmlEngine()->addUrlInterceptor(m_urlInterceptor);
     }
 
     emit workspaceChanged(workspace());

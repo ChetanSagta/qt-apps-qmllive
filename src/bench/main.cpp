@@ -145,7 +145,7 @@ Application::Application(int &argc, char **argv)
     : QApplication(argc, argv)
 {
     setAttribute(Qt::AA_NativeWindows, true);
-    setAttribute(Qt::AA_ImmediateWidgetCreation, true);
+    // setAttribute(Qt::AA_ImmediateWidgetCreation, true);
 
     setDarkStyle();
 }
